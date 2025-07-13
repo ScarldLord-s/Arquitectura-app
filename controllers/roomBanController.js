@@ -35,3 +35,15 @@ export const getBannedUsers = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+export const checkBanStatus = async (req, res) => {
+  const { roomId, userId } = req.params;
+
+  try {
+    const isBanned = await RoomBanService.isUserBanned(roomId, userId);
+    res.json({ banned: isBanned });
+  } catch (error) {
+    console.error('Error al verificar baneo:', error.message);
+    res.status(500).json({ error: 'Error al verificar baneo' });
+  }
+};

@@ -12,7 +12,7 @@ import fileRoutes from './routes/fileRoutes.js';
 import roomRoutes from './routes/roomRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
 import reportRoutes from './routes/reportRoutes.js';
-import roomBanRoutes from './routes/roomBanRoutes.js';
+import router from './routes/roomBanRoutes.js';
 import { setupRoomSocket } from './sockets/roomSocket.js';
 
 dotenv.config();
@@ -46,7 +46,7 @@ app.use('/api/rooms', roomRoutes);
 app.use('/api/video-calls', videoRoutes);
 app.use('/api/polls', pollRoutes);
 app.use('/api/reports', reportRoutes);
-app.use('/api/room-bans', roomBanRoutes);
+app.use('/api/bans', router);
 // Ruta de prueba
 app.get('/', (req, res) => {
   res.send('API funcionando correctamente');
