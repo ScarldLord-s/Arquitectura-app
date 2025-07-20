@@ -30,15 +30,6 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Límite de peticiones
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // Límite de 100 peticiones por IP
-  standardHeaders: true, // Devuelve información de límite de tasa en los encabezados (recomendado)
-  legacyHeaders: false, // Deshabilita los encabezados X-RateLimit-* antiguos
-});
-app.use(limiter);
-
 // Rutas principales
 app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);

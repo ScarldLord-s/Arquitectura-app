@@ -43,7 +43,12 @@ class RoomModel {
     try {
       let hashedPassword = null;
       if (isPrivate && password) {
-        hashedPassword = await bcrypt.hash(password, 10);
+        // Solo hashear si la contraseña no parece ya hasheada
+        if (typeof password === 'string' && !password.startsWith('$2a$') && !password.startsWith('$2b$')) {
+          hashedPassword = await bcrypt.hash(password, 10);
+        } else {
+          hashedPassword = password;
+        }
       }
 
       const query = `
