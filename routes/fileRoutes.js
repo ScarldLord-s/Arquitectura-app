@@ -3,6 +3,7 @@ import multer from 'multer';
 import GCSStorageService from '../services/gcsStorageService.js';
 import FileModel from '../models/fileModel.js';
 import { authenticateToken } from '../middleware/auth.js';
+import { summarizePdf } from '../controllers/pdfSummaryController.js';
 
 const router = express.Router();
 
@@ -99,6 +100,8 @@ router.post('/upload', authenticateToken, upload.single('file'), async (req, res
   }
 });
 
+
+router.get('/summarize/:file_id', summarizePdf);
 /**
  * GET /api/files/room/:roomId
  * Obtener archivos de una sala
